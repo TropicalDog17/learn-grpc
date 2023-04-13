@@ -1,0 +1,51 @@
+// We will use protobuf v3
+
+syntax = "proto3";
+
+// Service APIs
+service MovieBookingService {
+
+  rpc makeBooking(BookingQuery) returns (BookingDetails) {}
+
+  rpc getBookingDetails(BookingQuery) returns (BookingDetails) {}
+
+  rpc getAllBookingsByLocation(BookingQuery) returns (stream BookingDetails) {}
+
+  rpc getAllBookingsByName(BookingQuery) returns (stream BookingDetails) {}
+
+  rpc getAllBookingsByMovie(BookingQuery) returns (stream BookingDetails) {}
+
+  rpc testService(TestRequest) returns (TestResponse){}
+}
+
+
+// The request message
+
+message BookingQuery {
+  string id = 1;
+  string movie = 2;
+  string booking_name = 3;
+  string booking_email = 4;
+  string location = 5;
+  string date = 6;
+}
+
+// The response message
+
+message BookingDetails {
+  string id = 1;
+  string movie = 2;
+  string booking_name = 3;
+  string booking_email = 4;
+  string date = 5;
+  string location = 6;
+  string screen = 7;
+  int32 seat_number = 8;
+  string status = 9;
+};
+message TestRequest {
+    string test_msg = 1;
+}
+message TestResponse {
+    string message = 1;
+}
